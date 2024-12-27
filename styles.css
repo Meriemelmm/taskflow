@@ -118,3 +118,40 @@ footer {
     font-size: 0.9em;
     color: #777;
 }
+/* ARTICLE MANAGEMENT */
+.article-management {
+    margin-top: 40px;
+}
+
+.article-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.article-management th,
+.article-management td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.article-management th {
+    background-color:#45a049;
+    color: white;
+}
+
+.article-management td {
+    background-color: #fff;
+}
+
+button {
+    padding: 8px 36px;
+    background-color:grey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+
+    cursor: pointer;
+}

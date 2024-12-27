@@ -2,6 +2,7 @@
 
 
 include'class.php';
+include'config.php';
 
 
 
@@ -131,17 +132,6 @@ header nav ul li a:hover {
     <form id="task-form" method="post">
       <label for="task-name">Nom de la tâche :</label>
       <input type="text" id="task-name"  name="titre">
-
-      <label for="task-type">Type de tâche :</label>
-      <select id="task-type" name="type">
-        <option value="bug">Bug</option>
-        <option value="feature">Feature</option>
-        <option value="simple">Simple</option>
-      </select>
-
-      <label for="assigned-user">description :</label>
-      <input type="text" id="assigned-user"  name="description">
-
       <label for="task-status">Statut :</label>
       <select id="task-status" name="status">
         <option value="to-do"> to do</option>
@@ -149,14 +139,81 @@ header nav ul li a:hover {
         <option value="done">done</option>
       </select>
 
+      
+
+      <label for="assigned-user">description :</label>
+      <input type="text" id="assigned-user"  name="description">
+
+      <label for="task-type">Type de tâche :</label>
+      <select id="task-type" name="type">
+        <option value="bug">Bug</option>
+        <option value="feature">Feature</option>
+        <option value="simple">Simple</option>
+      </select>  
+      <div id="type"  >
+
+      <label for="task-name">version</label>
+      <input type="text" id="task-name"  name="version">
+      <label for="task-name">priority</label>
+      <input type="text" id="task-name"  name="priority">
+
+      
+             </div>
       <button type="submit" name="submit">Ajouter la tâche</button>
     </form>
   </section>
+  <section class="article-management">
+        <h2>Article Management</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>titre</th>
+                   
+                    <th>description</th>
+                    <th>status</th>
+                    <th>type</th>
+                
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+               
+               $afichetask="SELECT task.id_task,task.titre,task.description,task.status,task.type,task.priority,task.version,users.id FROM 
+               task JOIN  users ON users.id=task.id WHERE users.id= '{$_SESSION['id'] }'";
+               $afichetaskQuery=mysqli_query($connect,$afichetask);
+               if($afichetaskQuery){
+                   echo" hello brother";
+               }
+               
+                     while ($fetched = mysqli_fetch_assoc($afichetaskQuery)) {
+                       
+                        echo "
+                            <tr>
+                                <td>" . $fetched['titre'] . "</td>
+                                <td>" . $fetched['description'] . "</td>
+                             
+                                <td>" . $fetched['status'] . "</td>
+                                <td>" . $fetched['type'] . "</td>
+                              
+                                <td>
+                                   
+                                </td>
+                            </tr>";
+                    }
+              
+                ?>
+            </tbody>
+        </table>
+    </section>
  
 
 
  
-
-  <script src="app.js"></script>
+ 
+  <script   src="task.js">
+    
+  </script>
 </body>
 </html>
