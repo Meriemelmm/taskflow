@@ -1,5 +1,5 @@
 <?php
-//  $loginid=$_GET['id'];
+
 session_start();
  class  taskmang{
      public function newuser(){
@@ -31,15 +31,15 @@ session_start();
                 echo"very bug";
                 
                 $newtask=new bug ($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],$_POST['priority']);
-                $newtask->newtasks($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],$_POST['priority']);
+                $newtask->addtask($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],$_POST['priority']);
               
 
             }
             elseif($Type==="feature"){
         echo" very feature";
 
-        $newtask=new feature ($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],$_POST['version']);
-                $newtask->newtask($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],$_POST['version']);
+        $newtask=new feature ($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],null,$_POST['version']);
+                $newtask-> addtask($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type'],null,$_POST['version']);
         
 
             } 
@@ -109,7 +109,7 @@ class User extends newdata {
                 $_SESSION['id']=$afichefetchid;
              
            
-                header("Location: hello.php?id=$afichefetchid");
+                header("Location: form.php?id=$afichefetchid");
                 exit();
             } else {
                 
@@ -121,7 +121,7 @@ class User extends newdata {
                 echo  $afichefetchid;
                $_SESSION['id']= $afichefetchid;
                
-                header("Location: hello.php?id=$afichefetchid");
+                header("Location: form.php?id=$afichefetchid");
                 exit();
             }
            return      $this->id= $afichefetchid; 
@@ -169,24 +169,39 @@ class Task extends newdata{
         return $this->type;
     }
    
-  
-        public function addtask($titre, $description, $Statut, $Type) {
-            
-            
-          
-               $ide = $_SESSION['id'];
+    public function addtask($titre, $description, $Statut, $Type, $prio = null, $vers = null) {
+        $ide = $_SESSION['id'];  
     
-         
+      
+        if ($prio !== null ) {
+            $addtask = "INSERT INTO task (titre, description, status, type, id, priority) 
+                        VALUES ('$titre', '$description', '$Statut', '$Type', '$ide', '$prio')";
+        }
+    
+       
+        elseif ($vers !== null ) {
+            $addtask = "INSERT INTO task (titre, description, status, type, id, version) 
+                        VALUES ('$titre', '$description', '$Statut', '$Type', '$ide', '$vers')";
+        }
+    
+      
+       
+   
+        else {
             $addtask = "INSERT INTO task (titre, description, status, type, id) 
                         VALUES ('$titre', '$description', '$Statut', '$Type', '$ide')";
-    
-            $addtaskquery = mysqli_query($this->connect(), $addtask);
-            if ($addtaskquery) {
-                echo "good job with version";
-            } else {
-                echo mysqli_error();
-            }
         }
+    
+      
+        $addtaskquery = mysqli_query($this->connect(), $addtask);
+        if ($addtaskquery) {
+            echo "La tâche a été ajoutée avec succès !";
+        } else {
+            echo "Erreur : " . mysqli_error($this->connect());
+        }
+    }
+    
+
     }
     
         
@@ -213,23 +228,7 @@ class Bug extends Task {
     public function getPriority() {
         return $this->priority;
     }
-    public function newtasks($titre, $description, $Statut, $Type,$prio) {
-            
-            
-          
-        $ide = $_SESSION['id'];
 
-  
-     $addtask = "INSERT INTO task (titre, description, status, type, id,priority) 
-                 VALUES ('$titre', '$description', '$Statut', '$Type', '$ide','$prio')";
-
-     $addtaskquery = mysqli_query($this->connect(), $addtask);
-     if ($addtaskquery) {
-         echo "good job with version";
-     } else {
-         echo mysqli_error();
-     }
- }
 
  }
 
@@ -247,25 +246,6 @@ class Feature extends Task {
     }
     
 
-
-
-    public function newtask($titre, $description, $Statut, $Type,$vers,$prio=null) {
-            
-            
-          
-        $ide = $_SESSION['id'];
-
-  
-     $addtask = "INSERT INTO task (titre, description, status, type, id,version,priority) 
-                 VALUES ('$titre', '$description', '$Statut', '$Type', '$ide','$vers','$prio')";
-
-     $addtaskquery = mysqli_query($this->connect(), $addtask);
-     if ($addtaskquery) {
-         echo "good job with version";
-     } else {
-         echo mysqli_error();
-     }
- }
 }
 
 
