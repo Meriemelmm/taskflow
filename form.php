@@ -2,16 +2,7 @@
 
 
 include'class.php';
-include'config.php';
-
-
-
-
-
-
-
-
-
+// include'config.php';
 
 
 ?>
@@ -179,29 +170,30 @@ header nav ul li a:hover {
             </thead>
             <tbody>
                 <?php
+                // $task->affiche();
                
-               $afichetask="SELECT task.id_task,task.titre,task.description,task.status,task.type,task.priority,task.version,users.id FROM 
-               task JOIN  users ON users.id=task.id WHERE users.id= '{$_SESSION['id'] }'";
-               $afichetaskQuery=mysqli_query($connect,$afichetask);
-               if($afichetaskQuery){
-                   echo" hello brother";
-               }
+              //  $afichetask="SELECT task.id_task,task.titre,task.description,task.status,task.type,task.priority,task.version,users.id FROM 
+              //  task JOIN  users ON users.id=task.id WHERE users.id= '{$_SESSION['id'] }'";
+              //  $afichetaskQuery=mysqli_query($connect,$afichetask);
+              //  if($afichetaskQuery){
+              //      echo" hello brother";
+              //  }
                
-                     while ($fetched = mysqli_fetch_assoc($afichetaskQuery)) {
+              //        while ($fetched = mysqli_fetch_assoc($afichetaskQuery)) {
                        
-                        echo "
-                            <tr>
-                                <td>" . $fetched['titre'] . "</td>
-                                <td>" . $fetched['description'] . "</td>
+              //           echo "
+              //               <tr>
+              //                   <td>" . $fetched['titre'] . "</td>
+              //                   <td>" . $fetched['description'] . "</td>
                              
-                                <td>" . $fetched['status'] . "</td>
-                                <td>" . $fetched['type'] . "</td>
+              //                   <td>" . $fetched['status'] . "</td>
+              //                   <td>" . $fetched['type'] . "</td>
                               
-                                <td>
+              //                   <td>
                                    
-                                </td>
-                            </tr>";
-                    }
+              //                   </td>
+              //               </tr>";
+              //       }
               
                 ?>
             </tbody>

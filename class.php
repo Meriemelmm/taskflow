@@ -1,5 +1,5 @@
 <?php
-
+include'form.php';
 session_start();
  class  taskmang{
      public function newuser(){
@@ -67,6 +67,8 @@ session_start();
  $newtaskmange= new taskmang();
 $newtaskmange->newuser();
 $newtaskmange->typetask();
+// $task=new task($_POST['titre'],$_POST['description'],$_POST['status'],$_POST['type']);
+
 
 // ------------------  class database:
 class newdata {
@@ -100,7 +102,7 @@ class User extends newdata {
             $connect = $this->connect(); 
 
            
-            $afiche = mysqli_query($connect, "SELECT id, email FROM users WHERE email = '$emai'");
+            $afiche = mysqli_query($connect, "SELECT id, email FROM users WHERE email = '$emai' ");
             echo "parfait";
 
             if (mysqli_num_rows($afiche) > 0) {
@@ -124,14 +126,10 @@ class User extends newdata {
                 header("Location: form.php?id=$afichefetchid");
                 exit();
             }
-           return      $this->id= $afichefetchid; 
+         
         }
     }
-    protected function getid(){
-        if(isset($_GET['id'])){
-            return $this->id=$_GET['id'];
-        }
-    }
+  
 }
 
 
@@ -200,6 +198,34 @@ class Task extends newdata{
             echo "Erreur : " . mysqli_error($this->connect());
         }
     }
+    //  function afiche 
+//     function affiche(){
+//         // Limiter la quantité de données récupérées
+//         $afichetask = "SELECT task.id_task, task.titre, task.description, task.status, task.type, task.priority, task.version, users.id 
+//                        FROM task 
+//                        JOIN users ON users.id = task.id 
+//                        WHERE users.id = '{$_SESSION['id']}'
+//                        LIMIT 100";  // Limiter le nombre de résultats à récupérer
+    
+//         // Exécuter la requête
+//         $afichetaskQuery = mysqli_query($this->connect(), $afichetask);
+    
+//        if ($afichetaskQuery) {
+//     while ($fetched = mysqli_fetch_assoc($afichetaskQuery)) {
+//         echo "
+//             <tr>
+//                 <td>" . $fetched['titre'] . "</td>
+//                 <td>" . $fetched['description'] . "</td>
+//                 <td>" . $fetched['status'] . "</td>
+//                 <td>" . $fetched['type'] . "</td>
+//                 <td>" . $fetched['priority'] . "</td> <!-- Ajouter la priorité -->
+//             </tr>";
+//     }
+// } else {
+//     echo "Erreur de requête: " . mysqli_error($this->connect());
+// }
+//     }
+    
     
 
     }
