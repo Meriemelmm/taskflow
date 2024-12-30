@@ -2,7 +2,7 @@
 <?php
 
 
-include'class.php';
+include'afiche.php';
 ?>
 
 

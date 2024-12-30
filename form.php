@@ -1,8 +1,8 @@
 <?php
 
 
-include'class.php';
-// include'config.php';
+include'afiche.php';
+
 
 
 ?>
@@ -104,6 +104,10 @@ header nav ul li a:hover {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+a
+#change{
+  background:red;
+}
 
 
 
@@ -165,44 +169,23 @@ header nav ul li a:hover {
                     <th>status</th>
                     <th>type</th>
                 
-                    <th>Actions</th>
+                 
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // $task->affiche();
+             $newtaskmange->afichage();
                
-              //  $afichetask="SELECT task.id_task,task.titre,task.description,task.status,task.type,task.priority,task.version,users.id FROM 
-              //  task JOIN  users ON users.id=task.id WHERE users.id= '{$_SESSION['id'] }'";
-              //  $afichetaskQuery=mysqli_query($connect,$afichetask);
-              //  if($afichetaskQuery){
-              //      echo" hello brother";
-              //  }
-               
-              //        while ($fetched = mysqli_fetch_assoc($afichetaskQuery)) {
-                       
-              //           echo "
-              //               <tr>
-              //                   <td>" . $fetched['titre'] . "</td>
-              //                   <td>" . $fetched['description'] . "</td>
-                             
-              //                   <td>" . $fetched['status'] . "</td>
-              //                   <td>" . $fetched['type'] . "</td>
-                              
-              //                   <td>
-                                   
-              //                   </td>
-              //               </tr>";
-              //       }
               
                 ?>
             </tbody>
         </table>
     </section>
+   
+  
  
 
 
- 
  
   <script   src="task.js">
     

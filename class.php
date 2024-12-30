@@ -1,5 +1,6 @@
 <?php
-include'form.php';
+// include'form.php';
+// include'login.php';
 session_start();
  class  taskmang{
      public function newuser(){
