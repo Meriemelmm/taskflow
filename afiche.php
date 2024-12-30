@@ -63,6 +63,7 @@ session_start();
         $task= new task();
 
     $task->affiche();
+ 
      }
 
 
@@ -227,7 +228,7 @@ class Task extends newdata{
                 <td>" . $fetched['titre'] . "</td>
                 <td>" . $fetched['description'] . "</td>
                 <td>" . $fetched['status'] .  "   
- <button style='background: #45a049'><a href='change' style> change</a></button></a>
+ <button style='background: #45a049'><a href='change.php?editedid={$fetched['id_task']}'> change</a></button>
                 </td>
                 <td>" . $fetched['type'] . "</td>
               
@@ -237,10 +238,15 @@ class Task extends newdata{
     echo "Erreur de requête: " . mysqli_error($this->connect());
 }
     }
-     
+     function changestatus(){
+$edited=$_GET['editedid'];
+
+
+     }
     
 
     }
+  
    
     
     

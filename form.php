@@ -182,7 +182,12 @@ a
         </table>
     </section>
    
-  
+  <!-- <button id="change"> change</button>
+<form action="" style="width:120px"> <select id="task-type" name="type">
+        <option value="bug">Bug</option>
+        <option value="feature">Feature</option>
+        <option value="simple">Simple</option>
+      </select></form> -->
  
 
 
